@@ -13,8 +13,11 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { SignupValidation } from "@/lib/validation"
 import { z } from "zod"
+import { Link } from "react-router-dom"
 
 function SignupForm() {
+
+  const isLoading = true
 
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -96,7 +99,14 @@ function SignupForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">Submit</Button>
+          <Button type="submit" className="shad-button_primary">
+            {isLoading ? "Loading..." : "Sign up"}
+          </Button>
+
+          <p className="text-small-regular text-light-2 text-center mt-2">
+            Alredy have an account? 
+            <Link to="/sign-in" className="text-primary-500"> Log in</Link>
+          </p>
         </form>
       </div>
     </Form>
